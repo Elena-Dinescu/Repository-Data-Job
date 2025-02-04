@@ -1314,7 +1314,7 @@ if page == pages[3] :
 
   # Button to make a prediction
     if st.button("Predict"):
-      Initialize the Gradient Boosting model
+      #Initialize the Gradient Boosting model
       gb_model = GradientBoostingClassifier()
       gb_model.fit(st.session_state.X_train, st.session_state.y_train)
       X_sample = st.session_state.X_test.iloc[[index]]
