@@ -23,6 +23,7 @@ from sklearn.ensemble import GradientBoostingClassifier
 from imblearn.over_sampling import SMOTE
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
+import re
  
 
 
@@ -37,16 +38,14 @@ page=st.sidebar.radio("Go to", pages)
 if page == pages[0] : 
   st.write("### Context")
   st.write("""
-  The rapid expansion of the data industry has given rise to a variety of technical roles, each requiring specific skill sets and expertise. 
-  This diversification reflects the increasing demand for data-driven solutions across industries, necessitating a better understanding of these roles and their interdependencies.
+  This project was carried out as part of the Data Analyst training from DataScientest.com. The team members are :
+    """)
+  col1, col2, col3 = st.columns([1, 2, 1])  
 
-  ### Key Positions:
-  - **Data Analyst**: Focuses on interpreting data to provide actionable insights, often utilizing tools for data visualization and statistical analysis.
-  - **Data Scientist**: Engages in building predictive models and performing complex analyses, requiring proficiency in programming languages and machine learning techniques.
-  - **Data Engineer**: Responsible for designing and maintaining data pipelines and architectures, ensuring data is accessible and reliable for analysis.
-  - **Machine Learning Engineer**: Specializes in developing and optimizing machine learning algorithms to make accurate predictions based on historical data.
-  - **Data Visualization Specialist**: Creates visually engaging representations of data to facilitate understanding and decision-making.
+  with col2:
+    st.markdown(" **Elena Dinescu & Jean Bernard Ndayambaje**", unsafe_allow_html=True)
 
+  st.write("""
   ### About the Dataset
   The data analyzed in this project originates from the 2020 Kaggle Machine Learning & Data Science Survey. Kaggle, under Google LLC, is a prominent platform and online community for data science and machine learning practitioners. 
 
@@ -60,6 +59,16 @@ if page == pages[0] :
   Recommender systems are a prominent application within data science, utilizing machine learning techniques to analyze user data and generate personalized suggestions. These systems are integral to various industries, enhancing user experience by tailoring content and product recommendations to individual preferences. By examining the survey's insights into programming languages, tools, and methodologies favored by data scientists, one can identify the competencies essential for building effective recommender systems. We will test our assumptions with statistics and showcase using visuals our findings and interesting patterns. To start, we’ll focus on gaining a deeper understanding of the dataset and the survey’s context.
            
   ### Framework
+  The rapid expansion of the data industry has given rise to a variety of technical roles, each requiring specific skill sets and expertise. 
+  This diversification reflects the increasing demand for data-driven solutions across industries, necessitating a better understanding of these roles and their interdependencies.
+
+  ### Key Positions:
+  - **Data Analyst**: Focuses on interpreting data to provide actionable insights, often utilizing tools for data visualization and statistical analysis.
+  - **Data Scientist**: Engages in building predictive models and performing complex analyses, requiring proficiency in programming languages and machine learning techniques.
+  - **Data Engineer**: Responsible for designing and maintaining data pipelines and architectures, ensuring data is accessible and reliable for analysis.
+  - **Machine Learning Engineer**: Specializes in developing and optimizing machine learning algorithms to make accurate predictions based on historical data.
+  - **Data Visualization Specialist**: Creates visually engaging representations of data to facilitate understanding and decision-making.
+
   The survey was conducted over 3.5 weeks in October 2020, resulting in 20,036 clean responses grouped in 355 columns. This dataset reveals insights about who works with data, how machine learning is being used across industries, and the best strategies for aspiring data scientists to enter the field. It was made available in its rawest possible form while ensuring anonymity and it is freely accessible on the Kaggle website.
                       
   """)
@@ -67,6 +76,7 @@ if page == pages[0] :
 
 
 if page == pages[1] : 
+  file_url = 'https://github.com/Elena-Dinescu/Repository-Data-Job/raw/refs/heads/main/Data%20Audit_ED.xlsx'
   st.write("""### Understanding the Data
   The 2020 Kaggle DS & ML Survey received 20,036 usable responses from participants in 171 different countries and territories. If a country or territory received less than 50 respondents, they were put into a group named “Other” for anonymity.
 
@@ -100,11 +110,17 @@ if page == pages[1] :
     st.dataframe(round((df.isnull().sum() / len(df)) * 100, 2))
 
   st.write("""
-  The first row contains the question’s text for each column (metadata), and the actual responses start from the second row onward. The first column contains the duration of the survey per participant. We can safely remove both the first column from the dataset. Going further with the analysis, 19 rows are duplicates. We will delete those also.
+  The first row contains the question’s text for each column (metadata), and the actual responses start from the second row onward. 
+  The first column contains the duration of the survey per participant. We can safely remove both the first column from the dataset. 
+  Going further with the analysis, 19 rows are duplicates. We will delete those also.
   
-  The **Column Q5**, which contains responses to the question, "Select the title most similar to your current role (or most recent title if retired)," will serve as the target variable in this machine learning scenario. The remaining variables will be used as features. (For a detailed breakdown of the variables, refer to the Data Audit Template.)
+  The **Column Q5**, which contains responses to the question, "Select the title most similar to your current role (or most recent title if retired)," 
+  will serve as the target variable in this machine learning scenario. The remaining variables will be used as features. 
+  (For a detailed breakdown of the variables, refer to the Data Audit file.
+   """)
+  st.markdown(f"[Data Audit]( {file_url} )")
 
-  Rows with missing values in the Q5 column were removed, as these rows exclusively contain NaN values across all columns except for Q1 to Q4.
+  st.write("""Rows with missing values in the Q5 column were removed, as these rows exclusively contain NaN values across all columns except for Q1 to Q4.
            
   ### Data Limitations
   The dataset includes several columns with significant amounts of missing data, such as those capturing tool usage and compensation. For instance, columns like Q24 (yearly compensation) have a substantial proportion of missing values, which limits the ability to draw reliable insights into financial trends. Furthermore, the extent of missingness varies across demographic groups, potentially introducing bias in analysis. Addressing these gaps through imputation or filtering is critical to ensuring robust results.
@@ -146,7 +162,7 @@ if page == pages[2] :
                       xy=(width + 50, p.get_y() + p.get_height() / 2), 
                       va='center', ha='left', fontsize=12, color='black')
 
-      # Add a title or additional text for the question
+      # Add a title
       fig.text(0.1, 0.95, f'{df[selected_column][0]}', fontsize=12, fontweight='bold', fontfamily='serif')
 
       # Customize the plot
@@ -238,7 +254,6 @@ if page == pages[2] :
     st.pyplot(plt)
 
   if st.button('Show Machine Learning Experience Distribution for Students'):
-    # Filter the data for role = 'Student'
     student_data = df[df['Q5'] == 'Student']
 
     # Calculate the distribution of programming experience
@@ -322,7 +337,7 @@ if page == pages[2] :
     st.pyplot(fig)
 
 
-  #Calculate the distribution
+  #Calculate the distribution ML
   if st.button('Show Machine Learning Experience Distribution for all Roles'):
     programmingExp = df_no_S.loc[1:, ['Q15']].value_counts().reset_index(name="Count")
     programmingExp['Percent'] = programmingExp.Count / programmingExp.Count.sum() * 100
@@ -405,7 +420,11 @@ if page == pages[2] :
   st.write(''' ### Gender ###
   ''')
   st.write('''
-  A striking 78.8% of the respondents are men. The analysis may overemphasize roles and skills more prevalent or preferred among men, while underrepresenting those associated with women. This can result in an incomplete understanding of the data industry's landscape. A role recommender system trained on gender-biased data might suggest career paths aligning with the majority gender's responses, thereby perpetuating existing gender disparities in the field. The result could unintentionally reinforce stereotypes by associating certain technical roles or skills predominantly with one gender, influencing perceptions and aspirations of future professionals.
+  A striking 78.8% of the respondents are men. The analysis may overemphasize roles and skills more prevalent or preferred among men, 
+           while underrepresenting those associated with women. This can result in an incomplete understanding of the data industry's landscape.
+            A role recommender system trained on gender-biased data might suggest career paths aligning with the majority gender's responses, 
+           thereby perpetuating existing gender disparities in the field. The result could unintentionally reinforce stereotypes by associating 
+           certain technical roles or skills predominantly with one gender, influencing perceptions and aspirations of future professionals.
          ''')
 
 
@@ -765,21 +784,56 @@ if page == pages[2] :
 
   # Display the plot in Streamlit
   st.pyplot(plt)
-
-
     
+  def convert_salary_interval(value):
+      if isinstance(value, str):  # Ensure it's a string before processing
+          value = value.replace("$", "").replace(",", "")  # Remove $ and commas
+          numbers = re.findall(r'\d+', value)  # Extract numeric values
+          if len(numbers) == 2:  # If it's an interval (e.g., 30,000 - 40,000)
+              return (int(numbers[0]) + int(numbers[1])) / 2  # Compute average
+          elif len(numbers) == 1:  # If it's a single number, use it directly
+              return int(numbers[0])
+      return None  # Handle cases where transformation isn't possible
+
+  # Apply transformation to Q24
+  if 'Q24' in df_no_S.columns:
+      df_no_S['Q24'] = df_no_S['Q24'].apply(convert_salary_interval)
+
+  # Ensure necessary columns exist before plotting
+  if 'Q15' in df_no_S.columns and 'Q24' in df_no_S.columns:
+      # Create the plot
+    fig, ax = plt.subplots(figsize=(12, 6))
+    sns.boxplot(y='Q15', x='Q24', data=df_no_S, ax=ax)
+
+      # Add labels and title
+    ax.set_title("Compensation vs Experience", fontsize=16)
+    ax.set_xlabel("Experience Level (Q15)", fontsize=14)
+    ax.set_ylabel("Average Yearly Compensation (Q24)", fontsize=14)
+
+      # Display the plot in Streamlit
+    st.pyplot(fig)
+
+  st.write('''The boxplot reveals a positive correlation between experience and compensation, as expected.
+Outliers in high compensation may indicate specialized roles or geographic variance. ''')
+
+
+
+
+
+
+
 
 if page == pages[3] : 
   
   st.write("""### Training the Models ###
 
   This section is divided into 4 main parts:
-
   - Transform the data set
   - Model training
   - Features engineering on the selected model
-  - Conclusions        
-           
+  - Conclusions  
+  
+      
   **1. Transform the data set**  
              
   The columns generated by answers to Multiple-Selection Questions pose significant challenges. Each possible choice is represented as a separate column,
@@ -834,8 +888,9 @@ if page == pages[3] :
 
   st.write(f"**Current state of the data frame** {st.session_state.df.shape}")
   st.dataframe(st.session_state.df)
-  st.write(""" **1.2. Data Encoding**: 
-  - Encode the Target variable """)
+
+  st.write(""" **1.2. Data Splitting and Encoding**: 
+  - Encode the Target variable c""")
 
   if 'X' in st.session_state:
     del st.session_state.X  # Delete old X
@@ -885,17 +940,22 @@ if page == pages[3] :
   # st.write('''before split after I runt he encoder data is correctly encoded''')
   # st.dataframe(st.session_state.X)
   # st.dataframe(st.session_state.y_encoded)
-
+  st.write(''' - Split the data in train and test data''')
   if st.session_state.y_encoded is None or len(st.session_state.y_encoded) == 0:
     st.warning("Target variable (y_encoded) is not encoded yet! Please apply label encoding first.")
   else:
      if st.button("Split Data"):
-      st.write('''We will first split the Data Frame in test and train''')
+      
       X_train, X_test, y_train, y_test = train_test_split(st.session_state.X, st.session_state.y_encoded, test_size=0.2, random_state=42)
-      st.dataframe(X_train)
-      st.dataframe(X_test)
-      st.dataframe(y_train)
-      st.dataframe(y_test)
+      if st.session_state.X_train is not None:
+        st.write('''X_train''')
+        st.dataframe(X_train)
+        st.write('''X_test''')
+        st.dataframe(X_test)
+        st.write('''y_train''')
+        st.dataframe(y_train)
+        st.write('''y_test''')
+        st.dataframe(y_test)
 
       st.session_state.X_train = X_train
       st.session_state.X_test = X_test
@@ -904,15 +964,15 @@ if page == pages[3] :
 
       st.success("Data successfully split into train and test sets!")
 
-      if st.session_state.X_train is not None:
-        st.write("### Train and Test Sets")
-        st.dataframe(st.session_state.X_train)
-        st.dataframe(st.session_state.X_test)
-        st.dataframe(st.session_state.y_train)
-        st.dataframe(st.session_state.y_test)
+      # if st.session_state.X_train is not None:
+      #   st.write("### Train and Test Sets")
+      #   st.dataframe(st.session_state.X_train)
+      #   st.dataframe(st.session_state.X_test)
+      #   st.dataframe(st.session_state.y_train)
+      #   st.dataframe(st.session_state.y_test)
 
   st.write("""
-  Encoding after spliting the data into train and test        
+ - After spliting the data into train and test we can proceed with the encoding of the features:        
    - Fill missing values for specific columns
    - Apply Ordinal Encoding to specific columns
    - Apply transformation for Multiple Selection Questions
@@ -1288,7 +1348,8 @@ if page == pages[3] :
     st.dataframe(styled_test)
 
   st.write('''**1.5. Conclusion**''')
-  st.write(''' The 'raw' model achieves the highest accuracy score, but the overall accuracy remains low. Unfortunately, these models will not be sufficient for an effective recommendation syste''')
+  st.write(''' The 'raw' model achieves the highest accuracy score, but the overall accuracy remains low. 
+           Unfortunately, these models will not be sufficient for an effective recommendation system.''')
   st.write(""" We performed a test with some sample data selected from X_test:""")
   # index  = 10
   # # st.write(type(st.session_state.y_test))
