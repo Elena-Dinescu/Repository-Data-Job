@@ -78,9 +78,8 @@ if page == pages[0] :
 if page == pages[1] : 
   file_url = 'https://github.com/Elena-Dinescu/Repository-Data-Job/raw/refs/heads/main/Data%20Audit_ED.xlsx'
   st.write("""### Understanding the Data
-  The 2020 Kaggle DS & ML Survey received 20,036 usable responses from participants in 171 different countries and territories. If a country or territory received less than 50 respondents, they were put into a group named “Other” for anonymity.
-
-  The 2020 Kaggle DS & ML Survey received 20,036 usable responses from participants in 171 different countries and territories. If a country or territory received less than 50 respondents, they were put into a group named “Other” for anonymity.
+  The 2020 Kaggle DS & ML Survey received 20,036 usable responses from participants in 171 different countries and territories. If a country or territory received less than 50 respondents, 
+  they were put into a group named “Other” for anonymity.
 
   To protect the respondents’ privacy, free-form text responses were not included in the public survey dataset, and the order of the rows was shuffled (responses are not displayed in chronological order).
 
