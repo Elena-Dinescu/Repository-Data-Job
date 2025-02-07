@@ -36,6 +36,18 @@ page=st.sidebar.radio("Go to", pages)
 
 
 if page == pages[0] : 
+  word_freq = df['Q5'].value_counts().to_dict()
+  
+  # Generate word cloud
+  wordcloud = WordCloud(width=800, height=400, background_color="white").generate_from_frequencies(word_freq)
+  
+  # Display the word cloud
+  plt.figure(figsize=(10, 5))
+  plt.imshow(wordcloud, interpolation="bilinear")
+  plt.axis("off")  # Hide the axes
+  plt.show()
+
+ 
   st.write("### Context")
   st.write("""
   This project was carried out as part of the Data Analyst training from DataScientest.com. The team members are :
