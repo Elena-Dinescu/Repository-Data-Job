@@ -1461,16 +1461,11 @@ if page == pages[4] :
 
  st.markdown(
      """
-     <style>
-     .center-text {
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         height: 100vh;
-         font-size: 30px;
-     }
-     </style>
-     """, unsafe_allow_html=True)
+     <div style="display: flex; justify-content: center; align-items: center; height: 100px;">
+         <h1>Thank You</h1>
+     </div>
+     """, unsafe_allow_html=True
+ )
  
  # Displaying "Thank you" in the center
  st.markdown('<div class="center-text">Thank you</div>', unsafe_allow_html=True)
