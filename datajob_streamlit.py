@@ -1346,7 +1346,60 @@ if page == pages[3] :
 
     # Display the styled table
     st.dataframe(styled_test)
+   
+# st.title("Gradient Boosting Feature Selection & Model Evaluation")
 
+# # Train initial Gradient Boosting model
+# gb = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=42)
+# gb.fit(X_train, y_train)
+
+# # Get feature importance
+# importances = gb.feature_importances_
+# feature_names = X.columns
+
+# # Sort features by importance
+# sorted_indices = np.argsort(importances)[::-1]
+# sorted_features = feature_names[sorted_indices]
+# sorted_importances = importances[sorted_indices]
+
+# # Convert to DataFrame for display
+# feature_importance_df = pd.DataFrame({
+#     'Feature': sorted_features,
+#     'Importance': sorted_importances
+# })
+
+# st.subheader("Feature Importance Ranking")
+# st.dataframe(feature_importance_df.style.format({"Importance": "{:.4f}"}))
+
+# # Keep only important features (threshold = 0.01)
+# threshold = 0.01
+# important_features = feature_names[importances > threshold]
+# X_reduced = X[important_features]
+
+# st.write(f"Selected {len(important_features)} important features based on threshold {threshold}.")
+# st.write(important_features.tolist())
+
+# # Re-split after feature selection
+# X_train_reduced, X_test_reduced, y_train, y_test = train_test_split(X_reduced, y, test_size=0.2, random_state=42)
+
+# gb.fit(X_train_reduced, y_train)
+# y_pred_gb_reduced = gb.predict(X_test_reduced)
+
+# # Calculate Accuracy
+# accuracy = accuracy_score(y_test, y_pred_gb_reduced)
+# st.subheader("Model Accuracy")
+# st.write(f"Accuracy: {accuracy:.2f}")
+
+# # Classification report
+# st.subheader("Classification Report")
+# st.text(classification_report(y_test, y_pred_gb_reduced))
+
+# # Confusion Matrix
+# st.subheader("Confusion Matrix")
+# cm = pd.crosstab(y_test, y_pred_gb_reduced, rownames=['Real Class'], colnames=['Predicted Class'])
+# st.dataframe(cm)
+
+ 
   st.write('''**1.5. Conclusion**''')
   st.write(''' The 'raw' model achieves the highest accuracy score, but the overall accuracy remains low. 
            Unfortunately, these models will not be sufficient for an effective recommendation system.''')
