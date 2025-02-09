@@ -36,7 +36,7 @@ page=st.sidebar.radio("Go to", pages)
 
 
 if page == pages[0] : 
-  st.image("word_cloud.jpg", caption="Your Image Caption", use_column_width=True)
+  st.image("word_cloud.jpg", use_container_width=True)
   st.write("### Context")
   st.write("""
   This project was carried out as part of the Data Analyst training from DataScientest.com. The team members are :
