@@ -1455,7 +1455,8 @@ We’ve learned that the field of data provides immense potential to those who k
 In addition to the methods we've already implemented, there are several other avenues we could explore to improve our results, including:
 1.	Experimenting with an alternative target variable to uncover different insights or patterns (i.e. Experience Level (Q15),   Annual Compensation (Q24), Preferred Tools (Q7))
 2.	Augmenting the dataset by incorporating additional data, which could enhance model performance and generalizability (i.e. Adding economic indicators or population demographics or Incorporate industry-specific trends to capture evolving roles and technologies.).
-These strategies could open new opportunities for refinement and optimization in future iterations of the project.S
+
+These strategies could open new opportunities for refinement and optimization in future iterations of the project.
  """)
 
 
