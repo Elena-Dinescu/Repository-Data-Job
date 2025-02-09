@@ -831,7 +831,7 @@ if page == pages[3] :
   - Transform the data set
   - Model training
   - Features engineering on the selected model
-  - Conclusions  
+  - Test
   
       
   **1. Transform the data set**  
@@ -1400,7 +1400,6 @@ if page == pages[3] :
 # st.dataframe(cm)
 
  
-  st.write('''**1.5. Conclusion**''')
   st.write(''' The 'raw' model achieves the highest accuracy score, but the overall accuracy remains low. 
            Unfortunately, these models will not be sufficient for an effective recommendation system.''')
   st.write(""" We performed a test with some sample data selected from X_test:""")
