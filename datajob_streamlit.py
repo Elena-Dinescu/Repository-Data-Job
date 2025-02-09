@@ -1440,7 +1440,7 @@ if page == pages[3] :
 
 if page == pages[4] : 
  st.write(""" ### Conclusions ###""")
- st.write(""" Conclusions
+ st.write(""" 
 In this project, we had embarked on a journey to analyze the data industry landscape using the 2020 Kaggle Machine Learning & Data Science Survey dataset with the purpose  of developing a role recommender system
 to guide individuals in aligning their skills and aspirations with suitable roles in data science.
 
