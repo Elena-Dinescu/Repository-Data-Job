@@ -1467,8 +1467,7 @@ if page == pages[4] :
      """, unsafe_allow_html=True
  )
  
- # Displaying "Thank you" in the center
- st.markdown('<div class="center-text">Thank you</div>', unsafe_allow_html=True)
+
 
 
 
