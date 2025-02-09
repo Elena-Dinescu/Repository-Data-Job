@@ -31,7 +31,7 @@ df=pd.read_csv("kaggle_survey_2020_responses.csv")
 
 st.title("Data Industry Role Recommender System")
 st.sidebar.title("Table of contents")
-pages=["Introduction", "Data Understanding", "Data Exploration and Vizualisation", "Model Training and Evaluation" ]
+pages=["Introduction", "Data Understanding", "Data Exploration and Vizualisation", "Model Training and Evaluation" ,"Conclusions"]
 page=st.sidebar.radio("Go to", pages)
 
 
