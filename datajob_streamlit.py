@@ -1436,6 +1436,10 @@ if page == pages[3] :
         
       st.write(f"**Predicted Class:** {y_pred_sample[0]}")
       st.write(f"**Actual Class:** {y_sample}")
+ 
+
+if page == pages[4] : 
+ st.write("""Conclusions""")
 
 
 
