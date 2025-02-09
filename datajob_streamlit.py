@@ -1440,6 +1440,23 @@ if page == pages[3] :
 
 if page == pages[4] : 
  st.write(""" ### Conclusions ###""")
+ st.write(""" Conclusions
+In this project, we had embarked on a journey to analyze the data industry landscape using the 2020 Kaggle Machine Learning & Data Science Survey dataset with the purpose  of developing a role recommender system
+to guide individuals in aligning their skills and aspirations with suitable roles in data science.
+
+We tested various machine learning models, including Logistic Regression, K-Nearest Neighbors, Random Forest, Decision Tree, Support Vector Machine, and Gradient Boosting and through training and evaluation,
+we found that Gradient Boosting yielded the best performance in terms of accuracy and balanced precision and recall across different classes.
+
+Despite our efforts, the overall model accuracy remained relatively low, indicating that more advanced techniques or additional data might be needed for a highly effective role recommender system. 
+The data frame presented significant challenges and truly tested our abilities. It pushed us to experiment with various techniques and approaches in search of the best outcome. 
+Despite the final algorithm's low performance, the project proved to be an invaluable learning experience, allowing us to explore multiple aspects of data analysis and the world of machine learning. 
+We’ve learned that the field of data provides immense potential to those who know how to leverage the available tools effectively. 
+
+In addition to the methods we've already implemented, there are several other avenues we could explore to improve our results, including:
+1.	Experimenting with an alternative target variable to uncover different insights or patterns (i.e. Experience Level (Q15),   Annual Compensation (Q24), Preferred Tools (Q7))
+2.	Augmenting the dataset by incorporating additional data, which could enhance model performance and generalizability (i.e. Adding economic indicators or population demographics or Incorporate industry-specific trends to capture evolving roles and technologies.).
+These strategies could open new opportunities for refinement and optimization in future iterations of the project.S
+ """)
 
 
 
