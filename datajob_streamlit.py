@@ -36,7 +36,29 @@ page=st.sidebar.radio("Go to", pages)
 
 
 if page == pages[0] : 
- 
+
+   # List of roles
+  roles = [
+      'Data Scientist', 'Software Engineer', 'Other', 'Data Analyst',
+      'Research Scientist', 'Machine Learning Engineer', 'Business Analyst',
+      'Product/Project Manager', 'Data Engineer', 'Statistician',
+      'DBA/Database Engineer'
+  ]
+  
+  # Create a string from the list to generate the word cloud
+  roles_string = ' '.join(roles)
+  
+  # Generate the word cloud
+  wordcloud = WordCloud(width=800, height=400, background_color='white').generate(roles_string)
+  
+  # Display the word cloud using Streamlit
+  st.title("Role Word Cloud")
+  st.write("This word cloud visualizes different technical roles.")
+  plt.figure(figsize=(10, 5))
+  plt.imshow(wordcloud, interpolation='bilinear')
+  plt.axis("off")
+  st.pyplot(plt)
+   
   st.write("### Context")
   st.write("""
   This project was carried out as part of the Data Analyst training from DataScientest.com. The team members are :
