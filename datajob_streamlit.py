@@ -1153,13 +1153,13 @@ if page == pages[3] :
       st.write("**Classification Report:**")
       st.dataframe(report_df)
 
-              # Visualization: Confusion Matrix Heatmap
-      fig, ax = plt.subplots(figsize=(8,6))
-      sns.heatmap(cm_df, annot=True, fmt="d", cmap='Blues', xticklabels=cm_df.columns, yticklabels=cm_df.index)
-      plt.title('Confusion Matrix')
-      plt.xlabel('Predicted Class')
-      plt.ylabel('True Class')
-      st.pyplot(fig)
+      #         # Visualization: Confusion Matrix Heatmap
+      # fig, ax = plt.subplots(figsize=(8,6))
+      # sns.heatmap(cm_df, annot=True, fmt="d", cmap='Blues', xticklabels=cm_df.columns, yticklabels=cm_df.index)
+      # plt.title('Confusion Matrix')
+      # plt.xlabel('Predicted Class')
+      # plt.ylabel('True Class')
+      # st.pyplot(fig)
 
 
     #Display a table with the models accuracy
