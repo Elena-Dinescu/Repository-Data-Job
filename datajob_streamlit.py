@@ -1088,7 +1088,7 @@ if page == pages[3] :
 
 
 
-  st.write(""" **1.3. Model training**:  """)
+  st.write(""" **2. Model training**:  """)
   st.write(""" In this part we present the tests carried out using various classification models.
     - Logistic regression
     - K nearest neighbors
