@@ -890,7 +890,7 @@ if page == pages[3] :
   st.dataframe(st.session_state.df)
 
   st.write(""" **1.2. Data Splitting and Encoding**: 
-  - Encode the Target variable c""")
+  - Encode the Target variable Q5""")
 
   if 'X' in st.session_state:
     del st.session_state.X  # Delete old X
