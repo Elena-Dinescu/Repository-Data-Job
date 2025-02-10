@@ -1088,7 +1088,7 @@ if page == pages[3] :
 
 
 
-  st.write(""" **1.3. Training the Data**:  """)
+  st.write(""" **1.3. Model training**:  """)
   st.write(""" In this part we present the tests carried out using various classification models.
     - Logistic regression
     - K nearest neighbors
@@ -1332,7 +1332,7 @@ if page == pages[3] :
     Gradient Boosting is the best model here, as it provides the highest accuracy and balances precision and recall better across the various classes, especially for the important ones. 
             ''')
 
-    st.write('''**1.4. Features engineering on the selected model**''')
+    st.write('''**3. Features engineering on the selected model**''')
     st.write('''Steps taken to improve the model and their effects.''')
     test_table = {
       'Name': ['Oversampling', 'Undersampling', 'PCA', 'Feature Importance Selection','Hyperparameter adjustment: Learning_rate = 0.01'],
@@ -1412,7 +1412,7 @@ if page == pages[3] :
   # # st.dataframe(st.session_state.X_test)
 
 
-  st.write('''**1.6. Test**''')
+  st.write('''**4. Test**''')
   
   if (st.session_state.y_encoded is None or len(st.session_state.y_encoded) == 0) or \
     (st.session_state.X_train is None or len(st.session_state.X_train) == 0) or \
